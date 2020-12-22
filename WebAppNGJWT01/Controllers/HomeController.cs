@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAppNGJWT01.Controllers
@@ -18,6 +19,13 @@ namespace WebAppNGJWT01.Controllers
         {
             ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public string Protected()
+        {
+            return "Protected area";
         }
     }
 }
